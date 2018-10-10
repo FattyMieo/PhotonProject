@@ -7,6 +7,8 @@ class MyPhoton : private ExitGames::LoadBalancing::Listener
 {
 
 public:
+	float testCursor[2];
+
 	MyPhoton();
 	void run(void);
 	void connect(void);

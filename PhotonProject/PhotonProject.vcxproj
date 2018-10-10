@@ -117,12 +117,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="application-main.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Drawer.cpp" />
+    <ClCompile Include="lodepng.cpp" />
+    <ClCompile Include="old_main.cpp" />
     <ClCompile Include="hello-photon.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="MyPhoton.cpp" />
+    <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bitmap.h" />
+    <ClInclude Include="Drawer.h" />
+    <ClInclude Include="GLExtension.h" />
+    <ClInclude Include="lodepng.h" />
+    <ClInclude Include="MathExtension.h" />
     <ClInclude Include="MyPhoton.h" />
+    <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
