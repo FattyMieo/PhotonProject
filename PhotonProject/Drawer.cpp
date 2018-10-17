@@ -70,7 +70,7 @@ void Drawer::DrawSquare(GLuint textureID, int x, int y, int width, int height, i
 	float halfWidth = (float)width / 2.0f;
 	float halfHeight = (float)height / 2.0f;
 
-	float depth_f = depth;
+	float depth_f = (float)depth;
 
 	GLfloat vertices[] =
 	{

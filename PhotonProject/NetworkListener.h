@@ -2,24 +2,24 @@
 
 #include <LoadBalancing-cpp/inc/Client.h>
 
-
-class MyPhoton : private ExitGames::LoadBalancing::Listener
+class NetworkListener : private ExitGames::LoadBalancing::Listener
 {
-
 public:
 	float testCursor[2];
 
-	MyPhoton();
+	NetworkListener();
 	void run(void);
 	void connect(void);
+	void disconnect(void);
 	//void opCreateRoom(void);
 	//void opJoinRandomRoom(void);
 	//void opJoinOrCreateRoom(void);
-	void disconnect(void);
 	void sendEvent(void);
 	void sendEvent(float myID, float x, float y);
 
 private:
+	ExitGames::LoadBalancing::Client mLoadBalancingClient;
+
 	// receive and print out debug out here
 	virtual void debugReturn(int debugLevel, const ExitGames::Common::JString& string);
 
@@ -48,8 +48,4 @@ private:
 	virtual void leaveRoomReturn(int errorCode, const ExitGames::Common::JString& errorString);
 	virtual void joinLobbyReturn(void);
 	virtual void leaveLobbyReturn(void);
-
-	ExitGames::LoadBalancing::Client mLoadBalancingClient;
-
-
 };
