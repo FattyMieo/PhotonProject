@@ -9,6 +9,7 @@
 #include "IDrawable.h"
 #include "Container.h"
 #include "GameObject.h"
+#include "TypeDefinition.h"
 
 class Application : public IRunnable, public IDrawable
 {

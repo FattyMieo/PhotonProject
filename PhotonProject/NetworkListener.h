@@ -16,6 +16,7 @@ public:
 	//void opJoinOrCreateRoom(void);
 	void sendEvent(void);
 	void sendEvent(float myID, float x, float y);
+	void sendEvent(unsigned char* data, int size);
 
 private:
 	ExitGames::LoadBalancing::Client mLoadBalancingClient;

@@ -141,6 +141,8 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Container.h" />
+    <ClInclude Include="DataPacker.h" />
+    <ClInclude Include="DataSplitter.h" />
     <ClInclude Include="Drawer.h" />
     <ClInclude Include="FMODExtension.h" />
     <ClInclude Include="GameObject.h" />
@@ -153,9 +155,11 @@
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MyApplication.h" />
     <ClInclude Include="NetworkListener.h" />
+    <ClInclude Include="ResDefinition.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Spritesheet.h" />
     <ClInclude Include="Transform2D.h" />
+    <ClInclude Include="TypeDefinition.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Vector2.h" />
   </ItemGroup>

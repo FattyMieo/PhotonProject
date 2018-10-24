@@ -1,5 +1,6 @@
 #include "NetworkListener.h"
 #include <iostream>
+#include "MyApplication.h"
 
 static const ExitGames::Common::JString appId = L"07472f4e-c019-42b5-b7bd-4b3010dcaf37"; // set your app id here
 static const ExitGames::Common::JString appVersion = L"1.0";
@@ -70,6 +71,13 @@ void NetworkListener::sendEvent(float myID, float x, float y)
 	mLoadBalancingClient.opRaiseEvent(true, data, 3, 1);
 }
 
+void NetworkListener::sendEvent(unsigned char* data, int size)
+{
+	//if(mLoadBalancingClient.getIsInRoom() || mLoadBalancingClient.getIsInGameRoom())
+
+	mLoadBalancingClient.opRaiseEvent(true, data, size, 1);
+}
+
 // protocol implementations
 
 void NetworkListener::debugReturn(int debugLevel, const ExitGames::Common::JString& string)
@@ -117,17 +125,33 @@ void NetworkListener::customEventAction(int playerNr, nByte eventCode, const Exi
 	//std::cout << "received : " << data << std::endl;
 
 	//Send multiple datas
-	float* data = ExitGames::Common::ValueObject<float*>(eventContent).getDataCopy();
+	unsigned char* data = ExitGames::Common::ValueObject<unsigned char*>(eventContent).getDataCopy();
+	const int size = *ExitGames::Common::ValueObject<unsigned char*>(eventContent).getSizes();
 	if (data)
 	{
-		std::cout << data[0] << ", received : " << data[1] << ", " << data[2] << std::endl;
-		testCursor[0] = data[1];
-		testCursor[1] = data[2];
+		for (int i = 0; i < size; i++)
+		{
+			std::cout << (unsigned int)data[i] << " ";
+		}
+		std::cout << "received " << size << " bytes" << std::endl;
+		MyApplication::GetInstance()->OnReceiveNetworkEvent(data, (unsigned int)size);
 	}
 	else
 	{
 		std::cout << "Invalid data!" << std::endl;
 	}
+
+	//float* data = ExitGames::Common::ValueObject<float*>(eventContent).getDataCopy();
+	//if (data)
+	//{
+	//	std::cout << data[0] << ", received : " << data[1] << ", " << data[2] << std::endl;
+	//	testCursor[0] = data[1];
+	//	testCursor[1] = data[2];
+	//}
+	//else
+	//{
+	//	std::cout << "Invalid data!" << std::endl;
+	//}
 }
 
 void NetworkListener::connectReturn(int errorCode, const ExitGames::Common::JString& errorString, const ExitGames::Common::JString& cluster)
