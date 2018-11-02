@@ -28,7 +28,7 @@ int Spritesheet::GetTotalSprites()
 
 Sprite Spritesheet::GetSprite(unsigned int i)
 {
-	return GetSprite(i, BM_Alpha);
+	return GetSprite(i % m_hCount, i / m_vCount);
 }
 
 Sprite Spritesheet::GetSprite(unsigned int i, Sprite copySprite)
@@ -54,7 +54,7 @@ Sprite Spritesheet::GetSprite(unsigned int x, unsigned int y)
 
 	Vector2 dimension = ret.GetDimension();
 
-	ret.SetDimension((int)(dimension.x / m_hCount), (int)(dimension.y / m_vCount));
+	ret.SetDimension(dimension.x / m_hCount, dimension.y / m_vCount);
 
 	return ret;
 }
@@ -67,4 +67,9 @@ Sprite Spritesheet::GetSprite(unsigned int x, unsigned int y, Sprite copySprite)
 	ret.SetBlendingMode(copySprite.GetBlendingMode());
 
 	return ret;
+}
+
+Vector2 Spritesheet::GetDimension()
+{
+	return Vector2(m_spritesheet->GetDimension().x / m_hCount, m_spritesheet->GetDimension().y / m_vCount);
 }

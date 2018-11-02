@@ -1,7 +1,7 @@
-#include <GLFW/glfw3.h>
 #define _WINSOCKAPI_    // stops windows.h including winsock.h
 #include <Windows.h>
 #include <gl/GLU.h>
+#include <GLFW/glfw3.h>
 
 #include "FMODExtension.h"
 #include "PhotonListener.h"
@@ -89,7 +89,7 @@ int main()
 	// Enable / Disbale VSync
 	glfwSwapInterval((useVSync ? 1 : 0));
 
-	//Setup delegates
+	// Setup delegates
 	glfwSetWindowSizeCallback(window, onWindowResized);
 	glfwMakeContextCurrent(window); //Make the window's context current
 	onWindowResized(window, RESOLUTION_X, RESOLUTION_Y);
@@ -97,6 +97,9 @@ int main()
 	glfwSetCursorPosCallback(window, onCursorMoved);
 	glfwSetMouseButtonCallback(window, onMouseButton);
 	glfwSetKeyCallback(window, onKey);
+
+	// Hide mouse cursor
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
 	// To support alpha channel
 	glDisable(GL_CULL_FACE);

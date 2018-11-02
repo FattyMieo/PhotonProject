@@ -20,4 +20,6 @@ public:
 	Sprite GetSprite(unsigned int i, Sprite copySprite);
 	Sprite GetSprite(unsigned int x, unsigned int y);
 	Sprite GetSprite(unsigned int x, unsigned int y, Sprite copySprite);
+
+	Vector2 GetDimension();
 };

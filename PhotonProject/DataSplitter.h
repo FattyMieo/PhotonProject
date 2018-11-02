@@ -45,8 +45,8 @@ inline void DataSplitter<T>::Split(T value)
 	for (int i = 0; i < sizeof(T); ++i)
 	{
 		m_bytes[i] = (byte)(value & byteMask);
-
-		value = value >> 8;
+		
+		value = value >> 7 >> 1; //Fix Warning "'>>': Right shift by too large ammount, data loss"
 	}
 }
 

@@ -76,6 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)\SDK\Photon-Windows-Sdk_v4-1-5-1\Photon-cpp\inc;$(SolutionDir)\SDK\Photon-Windows-Sdk_v4-1-5-1;$(SolutionDir)\SDK\Photon-Windows-Sdk_v4-1-5-1\Common-cpp\inc;$(SolutionDir)\SDK\glfw-3.2.1.bin.WIN32\include;$(SolutionDir)\SDK\FmodEx-4.44.58\api\inc</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)\SDK\Photon-Windows-Sdk_v4-1-5-1\Photon-cpp\lib;$(SolutionDir)\SDK\Photon-Windows-Sdk_v4-1-5-1\LoadBalancing-cpp\lib;$(SolutionDir)\SDK\Photon-Windows-Sdk_v4-1-5-1\Common-cpp\lib;$(SolutionDir)\SDK\glfw-3.2.1.bin.WIN32\lib-vc2015;$(SolutionDir)\SDK\FmodEx-4.44.58\api\lib</AdditionalLibraryDirectories>
@@ -131,6 +132,7 @@
     <ClCompile Include="NetworkListener.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Spritesheet.cpp" />
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="Transform2D.cpp" />
     <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
@@ -144,6 +146,7 @@
     <ClInclude Include="DataPacker.h" />
     <ClInclude Include="DataSplitter.h" />
     <ClInclude Include="Drawer.h" />
+    <ClInclude Include="BoardState.h" />
     <ClInclude Include="FMODExtension.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GLExtension.h" />
@@ -158,6 +161,7 @@
     <ClInclude Include="ResDefinition.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Spritesheet.h" />
+    <ClInclude Include="Text.h" />
     <ClInclude Include="Transform2D.h" />
     <ClInclude Include="TypeDefinition.h" />
     <ClInclude Include="Vector.h" />

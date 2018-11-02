@@ -181,6 +181,7 @@ void NetworkListener::disconnectReturn(void)
 void NetworkListener::createRoomReturn(int localPlayerNr, const ExitGames::Common::Hashtable& /*gameProperties*/, const ExitGames::Common::Hashtable& /*playerProperties*/, int errorCode, const ExitGames::Common::JString& errorString)
 {
 	std::wcout<<"createRoomReturn"<<std::endl;
+	MyApplication::GetInstance()->OnCreateRoomEvent(localPlayerNr);
 }
 
 void NetworkListener::joinOrCreateRoomReturn(int localPlayerNr, const ExitGames::Common::Hashtable& /*gameProperties*/, const ExitGames::Common::Hashtable& /*playerProperties*/, int errorCode, const ExitGames::Common::JString& errorString)
