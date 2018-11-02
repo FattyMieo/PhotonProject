@@ -53,13 +53,12 @@ inline void DataSplitter<T>::Split(T value)
 template<typename T>
 inline T DataSplitter<T>::Merge(void)
 {
-	uint ret = 0;
+	T ret = 0;
 
-	for (int i = 0; i < sizeof(T); ++i)
+	for (int i = sizeof(T) - 1; i >= 0; --i)
 	{
-		ret = m_bytes[i] & byteMask;
-
 		ret = ret << 8;
+		ret = ret | m_bytes[i];
 	}
 
 	return ret;

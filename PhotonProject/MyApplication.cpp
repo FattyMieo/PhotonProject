@@ -31,11 +31,24 @@ void MyApplication::Start()
 	sp->LoadFromFile("Cursor.png");
 	sp->SetDimension(32, 32);
 	sp->SetBlendingMode(BM_Alpha);
+
+	otherCursor->SetActive(false);
 }
 
 void MyApplication::Update(float deltaTime)
 {
 	Application::Update(deltaTime);
+
+	if (timer < maxTime)
+	{
+		timer += deltaTime;
+	}
+	else if (needsUpdate)
+	{
+		needsUpdate = false;
+		timer -= maxTime;
+		SendMove(myCursor->GetTransform().position.x, myCursor->GetTransform().position.y);
+	}
 
 	Vector2 pos = otherCursor->GetTransform().position;
 	otherCursor->GetTransform().position = Vector2
@@ -48,7 +61,8 @@ void MyApplication::Update(float deltaTime)
 void MyApplication::OnMouseCursorMove(float x, float y)
 {
 	myCursor->GetTransform().position = Vector2(x, y);
-	SendMove(x, y);
+	needsUpdate = true;
+	//SendMove(x, y);
 }
 
 void MyApplication::SendMove(float x, float y)
@@ -62,12 +76,6 @@ void MyApplication::SendMove(float x, float y)
 
 	DataSplitter<uint> splitter;
 	splitter.Split(packer.GetData());
-
-	for (int i = 0; i < sizeof(uint); i++)
-	{
-		std::cout << (int)splitter.GetArray()[i] << " ";
-	}
-	std::cout << std::endl;
 
 	SendNetworkEvent(splitter.GetArray(), sizeof(uint));
 }
@@ -84,7 +92,17 @@ void MyApplication::OnReceiveNetworkEvent(byte* packedData, uint size)
 	packer.Extract(ex, sizeof(ushort) * 8);
 	otherCursorPos.x = (float)ex;
 	otherCursorPos.y = (float)ey;
-	std::cout << otherCursorPos.x << ", " << otherCursorPos.y << std::endl;
+}
+
+void MyApplication::OnJoinRoomEvent(int playerID)
+{
+	otherCursor->SetActive(true);
+	SendMove(myCursor->GetTransform().position.x, myCursor->GetTransform().position.y);
+}
+
+void MyApplication::OnLeaveRoomEvent(int playerID)
+{
+	otherCursor->SetActive(false);
 }
 
 void MyApplication::SendNetworkEvent(byte* packedData, uint size)

@@ -10,6 +10,9 @@ public:
 	GameObject* myCursor;
 	GameObject* otherCursor;
 	Vector2 otherCursorPos;
+	float maxTime = 0.1f;
+	float timer = 0.0f;
+	bool needsUpdate = false;
 
 	MyApplication();
 	virtual ~MyApplication();
@@ -27,5 +30,7 @@ public:
 	void SendMove(float x, float y);
 
 	virtual void OnReceiveNetworkEvent(byte* packedData, uint size);
+	virtual void OnJoinRoomEvent(int playerID);
+	virtual void OnLeaveRoomEvent(int playerID);
 	virtual void SendNetworkEvent(byte* packedData, uint size);
 };

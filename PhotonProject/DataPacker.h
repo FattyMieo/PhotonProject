@@ -19,6 +19,7 @@ public:
 	bool Extract(T& outValue, uint bitCount);
 
 	T GetData();
+	void SetData(T data, uint bitCount);
 	void SetData(T data);
 };
 
@@ -75,7 +76,14 @@ inline T DataPacker<T>::GetData()
 }
 
 template<typename T>
+inline void DataPacker<T>::SetData(T data, uint bitCount)
+{
+	m_bitCount = bitCount;
+	m_data = data;
+}
+
+template<typename T>
 inline void DataPacker<T>::SetData(T data)
 {
-	m_data = data;
+	return SetData(data, sizeof(T) * 8);
 }

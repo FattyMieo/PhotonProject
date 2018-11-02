@@ -73,9 +73,13 @@ void NetworkListener::sendEvent(float myID, float x, float y)
 
 void NetworkListener::sendEvent(unsigned char* data, int size)
 {
-	//if(mLoadBalancingClient.getIsInRoom() || mLoadBalancingClient.getIsInGameRoom())
+	//static int64 count = 0;
+	//mLoadBalancingClient.opRaiseEvent(false, ++count, 0);
 
-	mLoadBalancingClient.opRaiseEvent(true, data, size, 1);
+	if (mLoadBalancingClient.getIsInRoom() || mLoadBalancingClient.getIsInGameRoom())
+	{
+		mLoadBalancingClient.opRaiseEvent(true, data, size, 0);
+	}
 }
 
 // protocol implementations
@@ -107,11 +111,13 @@ void NetworkListener::serverErrorReturn(int errorCode)
 void NetworkListener::joinRoomEventAction(int playerNr, const ExitGames::Common::JVector<int>& playernrs, const ExitGames::LoadBalancing::Player& player)
 {
 	std::wcout<<"joinRoomEventAction"<<std::endl;
+	MyApplication::GetInstance()->OnJoinRoomEvent(playerNr);
 }
 
 void NetworkListener::leaveRoomEventAction(int playerNr, bool isInactive)
 {
 	std::wcout<<"leaveRoomEventAction"<<std::endl;
+	MyApplication::GetInstance()->OnLeaveRoomEvent(playerNr);
 }
 
 void NetworkListener::customEventAction(int playerNr, nByte eventCode, const ExitGames::Common::Object& eventContent)
@@ -201,7 +207,7 @@ void NetworkListener::joinRandomRoomReturn(int localPlayerNr, const ExitGames::C
 			//try to create a room and wait;
 			ExitGames::Common::JString name;
 			name += GETTIMEMS();
-			mLoadBalancingClient.opCreateRoom(name, ExitGames::LoadBalancing::RoomOptions().setMaxPlayers(4));
+			mLoadBalancingClient.opCreateRoom(name, ExitGames::LoadBalancing::RoomOptions().setMaxPlayers(2));
 		}
 
 		return;
