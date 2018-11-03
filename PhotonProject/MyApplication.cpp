@@ -361,11 +361,6 @@ void MyApplication::OnMouseCursorMove(float x, float y)
 {
 	myCursor->GetTransform().position = Vector2(x, y);
 	needsUpdate = true; //SendMove(x, y);
-
-	if (CheckCursorWithinButton(myCursor->GetTransform().position))
-	{
-		std::cout << "HAHAHAHA" << std::endl;
-	}
 }
 
 void MyApplication::OnMousePress(int button)
