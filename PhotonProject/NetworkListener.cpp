@@ -2,7 +2,7 @@
 #include <iostream>
 #include "MyApplication.h"
 
-static const ExitGames::Common::JString appId = L"07472f4e-c019-42b5-b7bd-4b3010dcaf37"; // set your app id here
+static const ExitGames::Common::JString appId = L"40783e03-573d-4b7a-a07e-1421e1c9312d"; // set your app id here
 static const ExitGames::Common::JString appVersion = L"1.0";
 static const ExitGames::Common::JString PLAYER_NAME = L"Windows";
 

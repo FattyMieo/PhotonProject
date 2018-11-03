@@ -12,7 +12,9 @@ enum EEndStatus
 {
 	EEndStatus_Victory = 0,
 	EEndStatus_Defeat,
-	EEndStatus_Draw
+	EEndStatus_Draw,
+	EEndStatus_SVictory,
+	EEndStatus_SDefeat,
 };
 
 enum EPlayerType
@@ -43,8 +45,8 @@ struct BoardCommand
 	// (4 bytes)
 	//0 - 8 = MakeMove
 	//9 = InvalidMove
-	//10 = Ready / Rematch
-	//11 = Unready / Surrender
+	//10 = Rematch / Surrender
+	//11 = 
 	//12 = 
 	//13 = 
 	//14 = 
